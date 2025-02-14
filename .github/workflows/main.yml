@@ -2,12 +2,14 @@ name: My Workflow
 on: push
 
 jobs:
-  my-first-job:
+  my-first-job:   # Unique job identifier
+    name: First Job  # Display name (optional)
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello World"
-    
-  my-second-job:
+
+  my-second-job:  # Unique job identifier
+    name: Second Job  # Display name (optional)
     runs-on: ubuntu-latest
     steps:
       - run: echo "Bye World!"
