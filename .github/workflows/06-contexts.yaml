@@ -1,9 +1,16 @@
 name: 06 - Contexts
-on: push
-
+on: 
+    push:
+    workflow_dispatch:
+env:
+    MY_WORKFLOW_VAR: 'workflow'
+    MY_OVERWRITTEN_VAR: 'workflow'
 jobs:
     echo-data:
         runs-on: ubuntu-latest
+        env:
+            MY_JOB_VAR: 'job'
+            MY_OVERWRITTEN_VAR: 'job'
         steps:
             - name: Display Information
               run: 
@@ -16,9 +23,25 @@ jobs:
                 echo "Run ID:" ${{ github.run_id }}
                 echo "Run number: ${{ github.run_number }}"
 
-            - name : Retrive Variable
-              env:
-                MY_VAR : ${{ vars.MY_VAR }}
+            - name: Retrieve Variable
               run: 
-                | 
-                echo "My Repository Variable: $MY_VAR"
+                |
+                echo "My Repository Variable: ${{ vars.MY_VAR }}"
+
+            - name: Print Environment Variable
+              env:
+                MY_OVERWRITTEN_VAR: 'step'
+              run:
+                |
+                echo "workflow env:${{ env.MY_WORKFLOW_VAR }}"
+                echo "workflow env:${{ env.MY_OVERWRITTEN_VAR }}"
+
+            - name: Print Environment Variable
+              env:
+                MY_OVERWRITTEN_VAR: 'step'
+              run:
+                  |
+                  echo "workflow env:${{ env.MY_WORKFLOW_VAR }}"
+                  echo "workflow env:${{ env.MY_OVERWRITTEN_VAR }}"
+              
+              
