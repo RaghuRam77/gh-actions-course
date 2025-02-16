@@ -1,6 +1,5 @@
 name: 06 - Contexts
 on: 
-    push:
     workflow_dispatch:
 env:
     MY_WORKFLOW_VAR: 'workflow'
@@ -34,7 +33,7 @@ jobs:
               run:
                 |
                 echo "workflow env:${{ env.MY_WORKFLOW_VAR }}"
-                echo "workflow env:$MY_OVERWRITTEN_VAR"
+                echo "workflow env:${{ env.MY_OVERWRITTEN_VAR }}"
 
             - name: Print Environment Variable
               run:
