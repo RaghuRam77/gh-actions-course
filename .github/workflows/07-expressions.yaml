@@ -23,7 +23,7 @@ jobs:
                 echo "Commit SHA:  ${{ github.sha}}"
                 echo "Runner OS: ${{ runner.os }}"
 
-            - name: Print when Triggered
+            - name: Print when Triggered from main
               if: ${{ inputs.debug &&  github.ref == 'refs/heads/main'}}
               run: 
                 |
