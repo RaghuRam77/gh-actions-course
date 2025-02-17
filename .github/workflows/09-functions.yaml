@@ -13,7 +13,7 @@ jobs:
               if: success()
               run: echo "I will print if previous steps succeed"
             - name: I will execute
-              if: !success()
+              if: failure()
               run: echo "I will print if previous step fails"
             - name: I will execute
               if: success() || failure()
