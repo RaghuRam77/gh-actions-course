@@ -7,10 +7,10 @@ jobs:
     echo1:
         runs-on: ubuntu-latest
         steps:
-            - name: Failing Step
-              run: exit 1
             - name: Sleep for 20 seconds
               run: sleep 20
+            - name: Failing Step
+              run: exit 1
             - name: I will be Skipped
               if: success()
               run: echo "I will print if previous steps succeed"
