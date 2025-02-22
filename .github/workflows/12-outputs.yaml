@@ -38,8 +38,8 @@ jobs:
         steps:
             - name: Deploy
               run: echo "Deploying"
-            # - name: Print Outputs
-            #   run: ${{ needs.build.outputs.output1 }}
+            - name: Print Outputs
+              run: ${{ needs.build.outputs.output1 }}
 
               
 
