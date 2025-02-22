@@ -24,7 +24,7 @@ jobs:
               run: echo "Building forn tag ${{inputs.tag}}"
     deploy:
         needs: [ build ]
-        if: needs.build.result = 'success' && ${{inputs.dry-run == false}}
+        if: ${{ needs.build.result == 'success' && inputs.dry-run == false }}
         runs-on: ubuntu-latest
         steps:
             - name: Deploy
