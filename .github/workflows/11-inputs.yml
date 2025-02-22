@@ -9,6 +9,7 @@ on:
             target:
                 description: Which environemt the workflow will target
                 type: environment
+                required: true
             tag:
                 description: Release form which to build and deploy
                 type: choice
@@ -23,9 +24,10 @@ jobs:
             - name: Build
               run: echo "Building forn tag ${{inputs.tag}}"
     deploy:
-        needs: [ build ]
-        if: ${{ needs.build.result == 'success' && inputs.dry-run == false }}
         runs-on: ubuntu-latest
+        needs: [ build ]
+        environment: ${{ inputs.target}}
+        if: ${{ needs.build.result == 'success' && inputs.dry-run == false }}
         steps:
             - name: Deploy
               run: echo "Deploying to ${{inputs.target}}"
